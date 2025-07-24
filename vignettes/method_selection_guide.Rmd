@@ -194,8 +194,7 @@ mixed_models_power(
 mediation_regression_power(
   r_a = 0.30,                  # X → Mediator
   r_b = 0.35,                  # Mediator → Y (controlling X)
-  power = 0.8,
-  n = NULL
+  power = 0.8
 )
 
 # SEM-based mediation, accounting for measurement reliability

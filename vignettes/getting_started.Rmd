@@ -195,7 +195,8 @@ result_novel$n
 r_a <- 0.40  # Training → self-efficacy  
 r_b <- 0.35  # Self-efficacy → performance (controlling training)
 
-# Power analysis for the indirect effect to find the required sample size
+# Power analysis for the indirect effect to find the required sample size.
+# This now uses the corrected discounting logic.
 result <- mediation_regression_power(
   r_a = r_a, 
   r_b = r_b, 
@@ -203,8 +204,11 @@ result <- mediation_regression_power(
   n = NULL # <- We are solving for N
 )
 
-result$n  # Required sample size: ~194
-result$indirect_effect  # Expected indirect effect size after discount: ~0.079
+# The required sample size is now smaller due to the corrected discount.
+result$n  # Required sample size: ~145
+
+# The expected indirect effect size is now correctly discounted by 0.75.
+result$indirect_effect  # Expected indirect effect size after discount: ~0.105
 ```
 
 ## Cross-Method Comparison

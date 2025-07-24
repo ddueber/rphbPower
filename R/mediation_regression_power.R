@@ -54,9 +54,10 @@ mediation_regression_power <- function(r_a = NULL, r_b = NULL, n = NULL, power =
 
   target_param <- names(which(null_params))
 
-  # Apply discount factor to any input effect sizes
-  if (!is.null(params$r_a)) params$r_a <- apply_discount_factor(params$r_a, discount_factor)
-  if (!is.null(params$r_b)) params$r_b <- apply_discount_factor(params$r_b, discount_factor)
+  # Apply the square root of the discount factor to each path
+  # This ensures the total discount on the indirect effect (a*b) is correct.
+  if (!is.null(params$r_a)) params$r_a <- params$r_a * sqrt(discount_factor)
+  if (!is.null(params$r_b)) params$r_b <- params$r_b * sqrt(discount_factor)
 
   # Define a target function for uniroot to solve for the missing parameter
   target_function <- function(target_val, param_name, current_params) {

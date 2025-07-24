@@ -97,9 +97,9 @@ mediation_sem_power <- function(r_a = NULL, r_b = NULL, n = NULL, power = NULL,
 
   target_param <- names(which(null_args))
 
-  # Apply discount factor to any input latent path coefficients
-  r_a_effective <- if (!is.null(r_a)) apply_discount_factor(r_a, discount_factor) else NULL
-  r_b_effective <- if (!is.null(r_b)) apply_discount_factor(r_b, discount_factor) else NULL
+  # Apply the square root of the discount factor to each path
+  r_a_effective <- if (!is.null(r_a)) r_a * sqrt(discount_factor) else NULL
+  r_b_effective <- if (!is.null(r_b)) r_b * sqrt(discount_factor) else NULL
 
   # Perform calculation based on which parameter is NULL
   if (target_param == "power") {

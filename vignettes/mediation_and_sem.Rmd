@@ -28,7 +28,8 @@ Engine: Analytical approximation based on the Aroian/Sobel test.
 
 ```{r ex1-1}
 # Target: 80% power to detect mediation where a-path r=0.20 and b-path r=0.30.
-# Note: The function applies the 0.75 discount factor to these paths by default.
+# Note: The function now correctly applies the 0.75 discount to the
+# final indirect effect (a*b).
 result_med_1 <- mediation_regression_power(r_a = 0.20, r_b = 0.30, power = 0.8)
 print(result_med_1)
 ```
@@ -40,7 +41,7 @@ print(result_med_1)
 pilot_a <- 0.45
 pilot_b <- 0.35
 
-# Conservative (recommended): The discount is applied to r_a and r_b before the calculation.
+# Conservative (recommended): The 0.75 discount is correctly applied to the a*b product.
 conservative_result <- mediation_regression_power(r_a = pilot_a, r_b = pilot_b, power = 0.8)
 
 # Optimistic: Explicitly set the discount factor to 1.0 to disable it.
@@ -62,6 +63,7 @@ NOTE: This is a fast approximation. For definitive results, a full Monte Carlo s
 
 ```{r ex2-1}
 # We expect latent paths of a=0.3 and b=0.25, with good measurement reliability (0.9).
+# The 0.75 discount is correctly applied to the final indirect effect.
 result_sem_1 <- mediation_sem_power(r_a = 0.3, r_b = 0.25, power = 0.8, measurement_reliability = 0.9)
 print(result_sem_1)
 ```

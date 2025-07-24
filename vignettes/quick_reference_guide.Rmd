@@ -154,11 +154,10 @@ logistic_regression_sample_size(effect_input = 1.75, effect_type = "or", power =
 ### Mediation Analysis
 
 ```{r mediation-analysis}
-# Regression-based mediation
-mediation_regression_power(r_a = 0.30, r_b = 0.35, n = 200)      # Calculate power
-mediation_regression_power(r_a = 0.30, r_b = 0.35, power = 0.8) # Calculate sample size
+# Regression-based mediation (calculates N by default)
+mediation_regression_power(r_a = 0.30, r_b = 0.35, power = 0.8)
 
-# SEM-based mediation (note: n_indicators_total replaced by measurement_reliability)
+# SEM-based mediation (with reliability)
 mediation_sem_power(r_a = 0.25, r_b = 0.40, power = 0.8, measurement_reliability = 0.9)
 ```
 
