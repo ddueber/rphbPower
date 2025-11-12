@@ -106,7 +106,7 @@ logistic_regression_power <- function(r_partial = NULL, n = NULL, power = NULL,
     power_diff_func <- function(val) {
       current_r <- if (target_param == "r_partial") val else r_for_calc
       current_n <- if (target_param == "n") ceiling(val) else n
-      current_power <- logistic_multi_predictor_sim_engine(current_r, current_n, n_predictors, alpha, 100, inter_predictor_cor)
+      current_power <- logistic_multi_predictor_sim_engine(current_r, current_n, n_predictors, alpha, 500, inter_predictor_cor)
       return(current_power - power_goal)
     }
     search_interval <- if(target_param == "n") c(n_predictors + 5, 100000) else c(0.01, 0.99)
