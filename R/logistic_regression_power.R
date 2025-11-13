@@ -111,7 +111,11 @@ logistic_regression_power <- function(r_partial = NULL, n = NULL, power = NULL,
     }
     search_interval <- if(target_param == "n") c(n_predictors + 5, 100000) else c(0.01, 0.99)
     solution <- tryCatch(
-      stats::uniroot(power_diff_func, interval = search_interval),
+      if (target_param == "n") {
+        ssanv::uniroot.integer(power_diff_func, interval = search_interval, step.power = 15)
+      } else {
+        stats::uniroot(power_diff_func, interval = search_interval)
+      },
       error = function(e) stop("Could not find a solution. The effect size may be too small or power too high.")
     )
     result <- list(value = solution$root)
